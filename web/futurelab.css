@@ -1,0 +1,48 @@
+#openFile,
+#outerContainer #secondaryOpenFile.visibleLargeView,
+#download,
+#outerContainer #secondaryDownload.visibleLargeView,
+#viewBookmark {
+  display: none;
+}
+
+#pageRotateCw,
+#pageRotateCcw,
+#pageRotateCcw + .horizontalToolbarSeparator {
+  display: none;
+}
+
+#cursorHandTool + .horizontalToolbarSeparator,
+#scrollVertical,
+#scrollHorizontal,
+#scrollWrapped,
+#scrollWrapped + .horizontalToolbarSeparator,
+#spreadNone,
+#spreadOdd,
+#spreadEven,
+#spreadEven + .horizontalToolbarSeparator,
+#documentProperties {
+  display: none;
+}
+
+body {
+  background-color: #9AA2A6;
+  background-image: none;
+}
+
+#thumbnailView,
+#toolbarSidebar,
+#toolbarContainer,
+.secondaryToolbar,
+.findbar {
+  background-color: #5F6466;
+  background-image: none;
+}
+
+.pdfViewer .page {
+  background-color: #9AA2A6;
+  border-image: none;
+  -webkit-background-clip: border-box;
+  -moz-background-clip: border-box;
+  background-clip: border-box;
+}
