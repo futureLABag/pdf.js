@@ -37,6 +37,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#endif-->
 
     <link rel="stylesheet" href="viewer.css">
+<!--#if !MINIFIED -->
+    <!-- directly include futurelab.css because import does not work here -->
+    <link rel="stylesheet" href="futurelab.css">
+<!--#endif-->
 <!--#if !PRODUCTION-->
     <link rel="resource" type="application/l10n" href="locale/locale.properties">
 <!--#endif-->

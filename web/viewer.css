@@ -1946,3 +1946,5 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
     display: none;
   }
 }
+
+@import url(futurelab.css);
