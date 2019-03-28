@@ -44,6 +44,11 @@ See https://github.com/adobe-type-tools/cmap-resources
     <link rel="stylesheet" href="viewer.css">
 <!--#endif-->
 
+<!--#if !MINIFIED -->
+<!-- directly include futurelab.css because import does not work here -->
+<link rel="stylesheet" href="futurelab.css">
+<!--#endif-->
+
 <!--#if MOZCENTRAL-->
 <!--<script src="resource://pdf.js/web/viewer.mjs" type="module"></script>-->
 <!--#elif !MOZCENTRAL-->
