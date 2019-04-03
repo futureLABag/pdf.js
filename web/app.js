@@ -1540,7 +1540,7 @@ function webViewerInitialized() {
   let appConfig = PDFViewerApplication.appConfig;
   let file;
   if (typeof PDFJSDev === 'undefined' || PDFJSDev.test('GENERIC')) {
-    let queryString = document.location.search.substring(1);
+    let queryString = document.location.hash.substring(1);
     let params = parseQueryString(queryString);
     file = 'file' in params ? params.file : AppOptions.get('defaultUrl');
     validateFileURL(file);
