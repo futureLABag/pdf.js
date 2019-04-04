@@ -2186,6 +2186,10 @@ function webViewerInitialized() {
     const queryString = document.location.hash.substring(1);
     const params = parseQueryString(queryString);
     file = params.get("file") ?? AppOptions.get("defaultUrl");
+
+    if (params.export === 'true') {
+      document.body.classList.add('fl_export_allowed');
+    }
     validateFileURL(file);
   } else if (PDFJSDev.test("MOZCENTRAL")) {
     file = window.location.href;
