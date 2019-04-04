@@ -1543,6 +1543,9 @@ function webViewerInitialized() {
     let queryString = document.location.hash.substring(1);
     let params = parseQueryString(queryString);
     file = 'file' in params ? params.file : AppOptions.get('defaultUrl');
+    if (params.export === 'true') {
+      document.body.classList.add('fl_export_allowed');
+    }
     validateFileURL(file);
   } else if (PDFJSDev.test('FIREFOX || MOZCENTRAL')) {
     file = window.location.href.split('#')[0];

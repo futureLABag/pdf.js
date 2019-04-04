@@ -1,10 +1,26 @@
 #openFile,
-#outerContainer #secondaryOpenFile.visibleLargeView,
+#secondaryOpenFile,
 #download,
-#outerContainer #secondaryDownload.visibleLargeView,
-#viewBookmark {
-  display: none;
+#secondaryDownload,
+#viewBookmark,
+#secondaryViewBookmark,
+#print,
+#secondaryPrint {
+  display: none !important;
 }
+
+.fl_export_allowed #print {
+  display: block !important;
+}
+@media all and (max-width: 700px) {
+  .fl_export_allowed #print {
+    display: none !important;
+  }
+  .fl_export_allowed #secondaryPrint {
+    display: initial !important;
+  }
+}
+
 
 #pageRotateCw,
 #pageRotateCcw,
