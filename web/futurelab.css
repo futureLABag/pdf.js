@@ -9,18 +9,29 @@
   display: none !important;
 }
 
-.fl_export_allowed #print {
+.fl_print_allowed #print {
   display: block !important;
 }
 @media all and (max-width: 700px) {
-  .fl_export_allowed #print {
+  .fl_print_allowed #print {
     display: none !important;
   }
-  .fl_export_allowed #secondaryPrint {
+  .fl_print_allowed #secondaryPrint {
     display: initial !important;
   }
 }
 
+.fl_download_allowed #download {
+  display: block !important;
+}
+@media all and (max-width: 700px) {
+  .fl_download_allowed #download {
+    display: none !important;
+  }
+  .fl_download_allowed #secondaryDownload {
+    display: initial !important;
+  }
+}
 
 #pageRotateCw,
 #pageRotateCcw,
