@@ -315,8 +315,6 @@ class PDFLinkService {
           source: this,
           query: phrase ? query : query.match(/\S+/g),
         });
-        PDFViewerApplication.findBar.open();
-        PDFViewerApplication.findBar.findField.value = params.search;
       }
       // borrowing syntax from "Parameters for Opening PDF Files"
       if (params.has("page")) {
