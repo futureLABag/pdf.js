@@ -53,7 +53,7 @@
 }
 
 body {
-  background-color: #2F3133;
+  background-color: #2f3133;
   background-image: none;
 }
 
@@ -64,25 +64,25 @@ body {
 }
 
 #loadingBar .progress {
-  background-color: #0078A7;
+  background-color: #0078a7;
 }
 
 #toolbarContainer,
 .secondaryToolbar,
-.findbar{
-  background-color: #484B4D;
+.findbar {
+  background-color: #484b4d;
   background-image: none;
 }
 
 .thumbnail {
-  margin: 0 14px 5px 14px;
+  margin: 0 14px 5px;
 }
 
 .thumbnail:not([data-loaded]) {
   border-radius: 6px;
   background-color: #606566;
   border: none;
-  margin: 0 14px 5px 14px;
+  margin: 0 14px 5px;
 }
 
 .thumbnailSelectionRing {
@@ -94,32 +94,32 @@ body {
 }
 
 .thumbnail.selected > .thumbnailSelectionRing {
-  border: 6px solid #0078A7;
+  border: 6px solid #0078a7;
   background-color: transparent;
   background-image: none;
 }
 
 .thumbnail:hover > .thumbnailSelectionRing {
-  border: 6px solid #0597CC;
+  border: 6px solid #0597cc;
   background-color: transparent;
   background-image: none;
 }
 
 .thumbnail.selected:hover > .thumbnailSelectionRing {
-  border: 6px solid #0078A7;
+  border: 6px solid #0078a7;
 }
 
 .thumbnailImage {
   border: none;
-  border: 1px solid #2F3133;
+  border: 1px solid #2f3133;
 }
 
-html[dir='ltr'] #toolbarSidebar,
-html[dir='rtl'] #toolbarSidebar,
-html[dir='ltr'] #sidebarContent,
-html[dir='rtl'] #sidebarContent,
-html[dir='ltr'] #viewerContainer,
-html[dir='rtl'] #viewerContainer,
+html[dir="ltr"] #toolbarSidebar,
+html[dir="rtl"] #toolbarSidebar,
+html[dir="ltr"] #sidebarContent,
+html[dir="rtl"] #sidebarContent,
+html[dir="ltr"] #viewerContainer,
+html[dir="rtl"] #viewerContainer,
 .thumbnailImage,
 .thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
   box-shadow: none;
@@ -127,9 +127,9 @@ html[dir='rtl'] #viewerContainer,
 
 .secondaryToolbar,
 .findbar,
-html[dir='ltr'] #toolbarContainer,
-html[dir='rtl'] #toolbarContainer {
-  box-shadow: 0 0 12px 0 rgba(0,0,0,0.48);
+html[dir="ltr"] #toolbarContainer,
+html[dir="rtl"] #toolbarContainer {
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.48);
 }
 
 #toolbarViewer {
@@ -145,7 +145,7 @@ html[dir='rtl'] #toolbarContainer {
 }
 
 #toolbarSidebar .splitToolbarButton {
-  margin: 24px 53px 14px 53px;
+  margin: 24px 53px 14px;
 }
 
 #sidebarContent {
@@ -155,7 +155,7 @@ html[dir='rtl'] #toolbarContainer {
 
 #toolbarSidebar,
 #thumbnailView {
-  background-color: #2F3133;
+  background-color: #2f3133;
   background-image: none;
 }
 
@@ -164,7 +164,7 @@ html[dir='rtl'] #toolbarContainer {
 }
 
 .pdfViewer .page {
-  background-color: #2F3133;
+  background-color: #2f3133;
   border-image: none;
   -webkit-background-clip: border-box;
   -moz-background-clip: border-box;
