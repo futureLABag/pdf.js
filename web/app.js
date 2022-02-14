@@ -2114,30 +2114,16 @@ const PDFViewerApplication = {
 
 let validateFileURL;
 if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
-  const HOSTED_VIEWER_ORIGINS = [
-    "null",
-    "http://mozilla.github.io",
-    "https://mozilla.github.io",
-  ];
   validateFileURL = function (file) {
     if (file === undefined) {
       return;
     }
     try {
       const viewerOrigin = new URL(window.location.href).origin || "null";
-      if (HOSTED_VIEWER_ORIGINS.includes(viewerOrigin)) {
-        // Hosted or local viewer, allow for any file locations
+      const origin = new URL(file).origin || "null";
+
+      if (viewerOrigin === origin) {
         return;
-      }
-      const { origin, protocol } = new URL(file, window.location.href);
-      // Removing of the following line will not guarantee that the viewer will
-      // start accepting URLs from foreign origin -- CORS headers on the remote
-      // server must be properly configured.
-      // IE10 / IE11 does not include an origin in `blob:`-URLs. So don't block
-      // any blob:-URL. The browser's same-origin policy will block requests to
-      // blob:-URLs from other origins, so this is safe.
-      if (origin !== viewerOrigin && protocol !== "blob:") {
-        throw new Error("file origin does not match viewer's");
       }
     } catch (ex) {
       PDFViewerApplication.l10n.get("loading_error").then(msg => {
