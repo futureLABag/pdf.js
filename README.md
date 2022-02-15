@@ -92,6 +92,29 @@ This will generate `pdf.js` and `pdf.worker.js` in the `build/generic/build/` di
 Both scripts are needed but only `pdf.js` needs to be included since `pdf.worker.js` will
 be loaded by `pdf.js`. The PDF.js files are large and should be minified for production.
 
+## Structure of the commits when building a new version
+
+The commit messages are structured as follows:
+
+
+Change the pdfjs.config file to the current version 
+
+    $ Bump version to 2.13.fl1
+
+Building the code with `gulp minified`. For this purpose `gulp build` should not be used, because it caused problems with the construction.
+
+    $ build minified version for 2.13.f1.
+
+## Install PDF.js in SP
+
+The old PDF.js module must first be uninstalled:
+
+    $ npm remove pdf.js
+
+Afterwards, the new version can be installed via this command:
+
+    $ npm install --save-exact pdf.js@git+https://github.com/futureLABag/pdf.js.git#2.13.fl1
+
 ## Using PDF.js in a web application
 
 To use PDF.js in a web application you can choose to use a pre-built version of the library
