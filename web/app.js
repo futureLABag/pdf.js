@@ -2196,6 +2196,26 @@ if (typeof PDFJSDev === "undefined" || !PDFJSDev.test("MOZCENTRAL")) {
   PDFPrintServiceFactory.initGlobals(PDFViewerApplication);
 }
 
+/*
+a somewhat generic and functioning method to get a domain namame from a
+host name.
+https://stackoverflow.com/questions/8253136/how-to-get-domain-name-only-using-javascript/16451961#16451961
+ */
+function getDomainName(domain) {
+  const parts = domain.split(".").reverse();
+  const cnt = parts.length;
+  if (cnt >= 3) {
+    // see if the second level domain is a common SLD.
+    const commonSLD = new RegExp(
+      "/^(com|edu|gov|net|mil|org|nom|co|name|info|biz)$/i"
+    );
+    if (commonSLD.test(parts[1])) {
+      return parts[2] + "." + parts[1] + "." + parts[0];
+    }
+  }
+  return parts[1] + "." + parts[0];
+}
+
 if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
   // eslint-disable-next-line no-var
   var validateFileURL = function (file) {
@@ -2203,12 +2223,23 @@ if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
       return;
     }
     try {
-      const viewerOrigin = new URL(window.location.href).origin || "null";
-      const origin = new URL(file).origin || "null";
+      const viewerHost = new URL(window.location.href).host || "null";
+      const fileHost = new URL(file).host || "null";
 
-      if (viewerOrigin === origin) {
+      if (viewerHost === fileHost) {
         return;
       }
+
+      /*
+      allow files from same domain. e.g. cache.preview.smartpolice.ch would be
+      ok as a source for the file when the viewer ist hosted on
+      preview.smartpolice.ch. smartpolice.ch has to match.
+       */
+      if (getDomainName(viewerHost) === getDomainName(fileHost)) {
+        return;
+      }
+
+      throw new Error("file domain does not match viewer's origin domain");
     } catch (ex) {
       PDFViewerApplication._documentError("pdfjs-loading-error", {
         message: ex.message,
