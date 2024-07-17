@@ -160,10 +160,6 @@ html[dir="rtl"] #toolbarContainer {
   background-image: none;
 }
 
-#scaleSelectContainer {
-  margin: 6px 0;
-}
-
 .pdfViewer .page {
   background-color: #2f3133;
   border-image: none;
