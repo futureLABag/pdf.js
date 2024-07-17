@@ -116,7 +116,7 @@ const DEFINES = Object.freeze({
   MOZCENTRAL: false,
   GECKOVIEW: false,
   CHROME: false,
-  MINIFIED: false,
+  MINIFIED: true,
   COMPONENTS: false,
   LIB: false,
   IMAGE_DECODERS: false,
