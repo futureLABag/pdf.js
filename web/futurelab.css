@@ -5,7 +5,9 @@
 #viewBookmark,
 #secondaryViewBookmark,
 #print,
-#secondaryPrint {
+#secondaryPrint,
+#editorModeButtons,
+#editorModeSeparator {
   display: none !important;
 }
 
