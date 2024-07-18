@@ -1,0 +1,36 @@
+---
+- name: Initially sync the pdf.js code and install node dependencies
+  hosts: localhost
+  remote_user: "{{ npm_username }}"
+  vars_files:
+    - ./variables.yml
+    - ./personal_variables.yml
+
+  tasks:
+    - name: rsync sourcecode
+      become: true
+      become_user: root
+      ansible.posix.synchronize:
+        src: "{{ dev_source }}/"
+        dest: "/Users/{{ npm_username }}/pdf.js/"
+        recursive: true
+        delete: true
+        rsync_opts:
+          - "--exclude=node_modules"
+          - "--exclude=build"
+
+
+    - name: fix permissions
+      ansible.builtin.file:
+        path: "/Users/{{ npm_username }}/pdf.js"
+        owner: "{{ npm_username }}"
+        group: staff
+        recurse: true
+
+
+    - name: npm install
+      become: true
+      become_user: "{{ npm_username }}"
+      ansible.builtin.shell: "source ~/.zshrc; npm install"
+      args:
+        chdir: "/Users/{{ npm_username }}/pdf.js"

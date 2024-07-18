@@ -1,0 +1,62 @@
+---
+# important: module gnu-tar required to unpack: `brew install gnu-tar`
+- name: Build the mediaCORE-UI code using the {{ npm_username }} user
+  hosts: localhost
+  remote_user: "{{ npm_username }}"
+  vars_files:
+    - ./variables.yml
+    - ./personal_variables.yml
+
+  tasks:
+    - name: Ensure group "{{ npm_username }}" exists
+      ansible.builtin.group:
+        name: "{{ npm_username }}"
+        state: present
+    - name: "Manage user object of {{ npm_username }}"
+      ansible.builtin.user:
+        name: "{{ npm_username }}"
+        comment: "{{ npm_username }}"
+        shell: "/bin/zsh"
+        group: "{{ npm_username }}"
+        groups: "everyone"
+        create_home: true
+        home: "/Users/{{ npm_username }}"
+
+    - name: create directory Applications/node.js
+      become: true
+      become_user: "{{ npm_username }}"
+      ansible.builtin.file:
+        path: /Users/{{ npm_username }}/Applications/node.js
+        state: directory
+        recurse: yes
+    - name: Unpack the tarball
+      become: true
+      become_user: "{{ npm_username }}"
+      ansible.builtin.unarchive:
+        src: "https://nodejs.org/dist/v20.9.0/node-v20.9.0-darwin-arm64.tar.gz"
+        remote_src: yes
+        dest: /Users/{{ npm_username }}/Applications/node.js
+    - name: Create symbolic link for current
+      become: true
+      become_user: "{{ npm_username }}"
+      ansible.builtin.file:
+        src: /Users/{{ npm_username }}/Applications/node.js/node-v20.9.0-darwin-arm64
+        dest: /Users/{{ npm_username }}/Applications/node.js/current
+        state: link
+    - name: Create .zshrc file
+      ansible.builtin.blockinfile:
+        path: "/Users/{{ npm_username }}/.zshrc"
+        owner: "{{ npm_username }}"
+        group: staff
+        create: true
+        block: |
+          export PATH=~/Applications/node.js/current/bin:$PATH
+
+    - name: Change ownership of ~/.ansible to calling user
+      ansible.builtin.file:
+        owner: "{{ ansible_env.SUDO_USER }}"
+        path: "~{{ ansible_env.SUDO_USER }}/.ansible"
+        recurse: true
+    - name: Change group ownership of ~/.ansible to main group of calling user
+      ansible.builtin.shell:
+        cmd: "chgrp -R $(id -g {{ ansible_env.SUDO_USER }}) ~{{ ansible_env.SUDO_USER }}/.ansible"

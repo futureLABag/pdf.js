@@ -1,0 +1,16 @@
+---
+- name: Build the pdf.js code using the jsdev user
+  hosts: localhost
+  remote_user: "{{ npm_username }}"
+  vars_files:
+    - ./variables.yml
+    - ./personal_variables.yml
+
+  tasks:
+    - name: run build
+      become: true
+      become_user: "{{ npm_username }}"
+      ansible.builtin.shell: "source ~/.zshrc; npx gulp generic"
+      args:
+        chdir: "/Users/{{ npm_username }}/pdf.js"
+
